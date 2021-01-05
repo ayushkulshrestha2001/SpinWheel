@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta charset="UTF-8">
 <title>Lucky Spin</title>
 <style>
@@ -141,25 +142,109 @@ span b{
 </div>
 
 <script>
-
-
-
 function myfunction(){
+    var personemail="ayush";
+    var results = [
+        {
+            name: '250',
+            rot: 630,
+            chanceOfWinning: 3
+        },
+        {
+            name: '150',
+            rot: 360,
+            chanceOfWinning: 2
+
+        },
+    
+        {
+            name: '50',
+            rot: 180,
+            chanceOfWinning: 5
+        },
+        {
+            name: '350',
+            rot: 450,
+            chanceOfWinning: 0.1
+
+        },
+        {
+            name: '10',
+            rot: 675,
+            chanceOfWinning: 10
+        },
+        {
+            name: '110',
+            rot: 495,
+            chanceOfWinning: 7
+
+        },
+    
+        {
+            name: '210',
+            rot: 405,
+            chanceOfWinning: 1
+        },
+        {
+            name: '310',
+            rot: 585,
+            chanceOfWinning: 0.1
+
+        }
+
+    ];
+
+
+
+// Get totoal chance.
+
+    var totalChance = 0;
+
+    for (var i = 0; i < results.length; i++) {
+        totalChance += results[i].chanceOfWinning;
+    }
+
+    // Get a random prize.
+
+    var r = Math.random() * totalChance;
+    var curr = 0;
+    var prize = results[0];
+
+    for (var i = 0; i < results.length; i++) {
+
+        curr += results[i].chanceOfWinning;
+
+        if (r < curr) {
+            prize = results[i];
+            break;
+        }
+    }
+
+    // Spin the wheel to the prize's rotation.
+    console.log(prize);
+    console.log(prize.rot);
+    document.getElementById('box').style.transform="rotate("+(prize.rot+1800)+"deg)";
+    var element=document.getElementById('mainbox');
+    element.classList.remove('animate');
+    setTimeout(function (){
+        element.classList.add('animate')  
+    },5000);  //5000=5sec
+
+    // Show prize after 6 seconds.
+   
+}
+
+/*function myfunction(){
     var x=1024;//min value
     var y=9999;//max value
     var deg=Math.floor(Math.random() * (x - y))+y;
     document.getElementById('box').style.transform="rotate("+deg+"deg)";
     var element=document.getElementById('mainbox');
     element.classList.remove('animate');
-    setTimeout(function(){
-        element.classList.add('animate');   
-    },5000);   //5000=5sec
-
-}
-
-
-
-
+    setTimeout(function (){
+        element.classList.add('animate')  
+    },5000);  //5000=5sec
+    }*/
 </script> 
 
 </body>
