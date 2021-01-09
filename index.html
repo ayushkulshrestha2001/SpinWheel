@@ -142,6 +142,22 @@ span b{
 
 <script>
 function myfunction(){
+    fetch('https://peaceful-reaches-33822.herokuapp.com/spin',{
+      method:'get',
+      headers:{'Content-type':'application/json'},
+      body:null
+  })
+    .then(response => response.json())
+      .then(prize=>{
+    document.getElementById('box').style.transform="rotate("+(prize.rot+1800)+"deg)";
+    var element=document.getElementById('mainbox');
+    element.classList.remove('animate');
+    setTimeout(function (){
+        element.classList.add('animate')  
+    },5000); //5000=5sec
+      })
+}
+/*function myfunction(){
     var personemail="ayush";
     var results = [
         {
@@ -220,8 +236,6 @@ function myfunction(){
     }
 
     // Spin the wheel to the prize's rotation.
-    console.log(prize);
-    console.log(prize.rot);
     document.getElementById('box').style.transform="rotate("+(prize.rot+1800)+"deg)";
     var element=document.getElementById('mainbox');
     element.classList.remove('animate');
